@@ -6,7 +6,10 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
             <span class="navbar-toggler-icon"></span>
         </button>
+        @guest
 
+
+        @else
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav mr-auto">
@@ -31,12 +34,26 @@
                         </li>
                     @endif
                 @else
-                <li class="nav-item">
-                           You are logged in as: {{ ucfirst(trans( Auth::user()->role ))  }}</span>
-                       
+                    <li class="nav-item">
+                        <span class="nav-link non-link">
+                            You are logged in as: {{ ucfirst(trans(Auth::user()->role)) }}
+                        </span>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link logout-link" href="{{ route('logout') }}"
+                           onclick="event.preventDefault();
+                                     document.getElementById('logout-form').submit();">
+                            {{ __('Log Out') }}
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
                     </li>
                 @endguest
             </ul>
         </div>
+        @endguest
     </div>
 </nav>
+
+
