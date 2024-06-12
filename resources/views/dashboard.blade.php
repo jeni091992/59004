@@ -14,14 +14,10 @@
             
             <div class="row">
                 <div class="col-md-6">
-                    <p>Welcome, {{ Auth::user()->name }}!</p>
+                    <h4>Welcome, {{ Auth::user()->name }}!</h4>
                 </div>
             </div>
-            <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Log Out</a>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                    @csrf
-                    <button type="submit" class="btn btn-link">Logout</button>
-                </form>
+            
             <!-- Page Content Goes Here -->
         </main>
     </div>
