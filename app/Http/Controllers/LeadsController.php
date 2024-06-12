@@ -48,7 +48,8 @@ class LeadsController extends Controller
             'email' => 'required|email|unique:leads,email,' . $lead->id,
             'phone' => 'required',
             'message' => 'nullable',
-            'agent_id' => 'nullable|exists:users,id'
+            'agent_id' => 'nullable|exists:users,id',
+            'stage' => 'required|string'
         ]);
 
         $lead->update($request->all());

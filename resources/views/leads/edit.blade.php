@@ -69,6 +69,19 @@
                             @enderror
                         </div>
 
+                        <div class="form-group">
+                            <label for="stage">Stage</label>
+                            <select name="stage" id="stage" class="form-control">
+                                <option value="New" {{ $lead->stage == 'New' ? 'selected' : '' }}>New</option>
+                                <option value="Contacted" {{ $lead->stage == 'Contacted' ? 'selected' : '' }}>Contacted</option>
+                                <option value="Qualified" {{ $lead->stage == 'Qualified' ? 'selected' : '' }}>Qualified</option>
+                                <option value="Proposal Sent" {{ $lead->stage == 'Proposal Sent' ? 'selected' : '' }}>Proposal Sent</option>
+                                <option value="Negotiation" {{ $lead->stage == 'Negotiation' ? 'selected' : '' }}>Negotiation</option>
+                                <option value="Closed-Won" {{ $lead->stage == 'Closed-Won' ? 'selected' : '' }}>Closed-Won</option>
+                                <option value="Closed-Lost" {{ $lead->stage == 'Closed-Lost' ? 'selected' : '' }}>Closed-Lost</option>
+                            </select>
+                        </div>
+
                         <button type="submit" class="btn btn-primary">Update Lead</button>
                         <a href="{{ route('leads.index') }}" class="btn btn-secondary">
                             {{ __('Cancel') }}

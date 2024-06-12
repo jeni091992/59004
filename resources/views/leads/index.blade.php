@@ -24,6 +24,7 @@
                             <th>Phone</th>
                             <th>Message</th>
                             <th>Agent</th>
+                            <th>Stage</th>
                             <th>Created At</th>
                             <th>Updated At</th>
                             <th>Actions</th>
@@ -38,6 +39,7 @@
                             <td>{{ $lead->phone }}</td>
                             <td>{{ $lead->message }}</td>
                             <td>{{ $lead->agent ? $lead->agent->name : 'Unassigned' }}</td>
+                            <td>{{ $lead->stage }}</td>
                             <td>{{ $lead->created_at }}</td>
                             <td>{{ $lead->updated_at }}</td>
                             <td>
