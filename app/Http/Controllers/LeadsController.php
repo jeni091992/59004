@@ -5,12 +5,19 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Lead;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class LeadsController extends Controller
 {
     public function index()
     {
-        $leads = Lead::all();
+        if(Auth::user()->role == 'agent'){
+            $leads = Lead::where('agent_id', Auth::user()->id)->get();
+        }
+        else{
+            $leads = Lead::all();
+        }
+        
         return view('leads.index', compact('leads'));
     }
 

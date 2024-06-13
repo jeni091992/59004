@@ -8,9 +8,44 @@ use Illuminate\Support\Facades\Hash;
 
 class AgentsController extends Controller
 {
+
+/*
+
+<option value="New" {{ $lead->stage == 'New' ? 'selected' : '' }}>New</option>
+                                <option value="Contacted" {{ $lead->stage == 'Contacted' ? 'selected' : '' }}>Contacted</option>
+                                <option value="Qualified" {{ $lead->stage == 'Qualified' ? 'selected' : '' }}>Qualified</option>
+                                <option value="Proposal Sent" {{ $lead->stage == 'Proposal Sent' ? 'selected' : '' }}>Proposal Sent</option>
+                                <option value="Negotiation" {{ $lead->stage == 'Negotiation' ? 'selected' : '' }}>Negotiation</option>
+                                <option value="Closed-Won" {{ $lead->stage == 'Closed-Won' ? 'selected' : '' }}>Closed-Won</option>
+                                <option value="Closed-Lost" {{ $lead->stage == 'Closed-Lost' ? 'selected' : '' }}>Closed-Lost</option>
+                            </select>
+
+*/
+
     public function index()
     {
-        $agents = User::where('role', 'agent')->get();
+        $agents = User::where('role', 'agent')
+            ->withCount([
+                'leads as contacted_count' => function ($query) {
+                    $query->where('stage', 'Contacted'); // Count leads in stage 1
+                },
+                'leads as qualified_count' => function ($query) {
+                    $query->where('stage', 'Qualified'); // Count leads in stage 2
+                },
+                'leads as proposal_count' => function ($query) {
+                    $query->where('stage', 'Proposal Sent'); // Count leads in stage 3
+                },
+                'leads as negotiation_count' => function ($query) {
+                    $query->where('stage', 'Negotiation'); // Count leads in stage 3
+                },
+                'leads as closed_won_count' => function ($query) {
+                    $query->where('stage', 'Closed-Won'); // Count leads in stage 3
+                },
+                'leads as closed_lost_count' => function ($query) {
+                    $query->where('stage', 'Closed-Lost'); // Count leads in stage 3
+                },
+            ])
+            ->get();
         return view('agents.index', compact('agents'));
     }
 

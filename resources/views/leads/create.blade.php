@@ -37,7 +37,8 @@
                             <select name="agent_id" id="agent_id" class="form-control">
                                 <option value="">Select Agent</option>
                                 @foreach($agents as $agent)
-                                    <option value="{{ $agent->id }}">{{ $agent->name }}</option>
+                                    <option value="{{ $agent->id }}" {{ $agent->id == Auth::user()->id ? 'selected' : '' }}>
+                                        {{ $agent->name }}</option>
                                 @endforeach
                             </select>
                         </div>
