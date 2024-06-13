@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Lead;
 use App\Models\User;
+use App\Models\Deal;
 use Illuminate\Support\Facades\Auth;
 
 class LeadsController extends Controller
@@ -69,6 +70,27 @@ class LeadsController extends Controller
         $lead->delete();
 
         return redirect()->route('leads.index')->with('success', 'Lead deleted successfully.');
+    }
+
+    public function convertToDeal($id)
+    {
+        $lead = Lead::findOrFail($id);
+
+        // Create a new deal with the lead data
+        $deal = new Deal();
+        $deal->name = $lead->name;
+        $deal->email = $lead->email;
+        $deal->phone = $lead->phone;
+        $deal->message = $lead->message;
+        $deal->agent_id = $lead->agent_id;
+        $deal->lead_id = $lead->id; // Optional: to keep track of the original lead
+        $deal->save();
+
+        // Optional: update lead status or delete lead
+        $lead->stage = 'Closed-Won';
+        $lead->save();
+
+        return redirect()->route('leads.index')->with('success', 'Lead converted to deal successfully.');
     }
 
 }

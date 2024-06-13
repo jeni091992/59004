@@ -1,14 +1,15 @@
+<!-- resources/views/leads/index.blade.php -->
 @extends('layouts.app')
 
 @section('content')
 <div class="container">
     <div class="row mb-4">
-        <div class="col-12 d-flex justify-content-between align-items-center">
+        <div class="col-12">
             <h1 class="display-4">Leads</h1>
         </div>
     </div>
     <div class="row mb-4">
-        <div class="col-12 d-flex justify-content-between align-items-center">
+        <div class="col-12 d-flex justify-content-end">
             <a href="{{ route('leads.create') }}" class="btn btn-primary">Add Lead</a>
         </div>
     </div>
@@ -22,11 +23,8 @@
                             <th>Name</th>
                             <th>Email</th>
                             <th>Phone</th>
-                            <th>Message</th>
-                            <th>Agent</th>
                             <th>Stage</th>
-                            <th>Created At</th>
-                            <th>Updated At</th>
+                            <th>Agent</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -37,19 +35,19 @@
                             <td>{{ $lead->name }}</td>
                             <td>{{ $lead->email }}</td>
                             <td>{{ $lead->phone }}</td>
-                            <td>{{ $lead->message }}</td>
-                            <td>{{ $lead->agent ? $lead->agent->name : 'Unassigned' }}</td>
                             <td>{{ $lead->stage }}</td>
-                            <td>{{ $lead->created_at }}</td>
-                            <td>{{ $lead->updated_at }}</td>
+                            <td>{{ $lead->agent ? $lead->agent->name : 'Unassigned' }}</td>
                             <td>
-                                <div class="d-flex">
-                                    <a href="{{ route('leads.edit', $lead->id) }}" class="btn btn-sm btn-warning mr-2">Edit</a>
+                                <div class="btn-group" role="group">
+                                    <a href="{{ route('leads.edit', $lead->id) }}" class="btn btn-sm btn-warning ml-1">Edit</a>
                                     <form action="{{ route('leads.destroy', $lead->id) }}" method="POST" style="display:inline;">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this lead?')">Delete</button>
+                                        <button type="submit" class="btn btn-sm btn-danger ml-1" onclick="return confirm('Are you sure you want to delete this lead?');">Delete</button>
                                     </form>
+                                    @if($lead->stage != 'Closed-Won')
+                                    <button class="btn btn-sm btn-success ml-1" onclick="createDeal({{ $lead->id }})">Create Deal</button>
+                                    @endif
                                 </div>
                             </td>
                         </tr>
@@ -63,11 +61,46 @@
 @endsection
 
 @section('scripts')
-<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap4.min.js"></script>
 <script>
 $(document).ready(function() {
-    $('#leads-table').DataTable();
+    $('#leads-table').DataTable({
+        responsive: true // Enable responsiveness
+    });
 });
+
+function createDeal(leadId) {
+    let dealValue = prompt("Enter the Deal Value $:");
+    if (dealValue) {
+        // Create a form element
+        let form = document.createElement("form");
+        form.method = "POST";
+        form.action = "/deals";
+
+        // Add CSRF token
+        let csrfField = document.createElement("input");
+        csrfField.type = "hidden";
+        csrfField.name = "_token";
+        csrfField.value = "{{ csrf_token() }}";
+        form.appendChild(csrfField);
+
+        // Add lead ID field
+        let leadIdField = document.createElement("input");
+        leadIdField.type = "hidden";
+        leadIdField.name = "lead_id";
+        leadIdField.value = leadId;
+        form.appendChild(leadIdField);
+
+        // Add deal value field
+        let dealValueField = document.createElement("input");
+        dealValueField.type = "hidden";
+        dealValueField.name = "deal_value";
+        dealValueField.value = dealValue;
+        form.appendChild(dealValueField);
+
+        // Append form to body and submit
+        document.body.appendChild(form);
+        form.submit();
+    }
+}
 </script>
 @endsection

@@ -21,6 +21,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('leads.index') }}">Leads</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('deals.index') }}">Deals</a>
+                </li>
             </ul>
 
             <!-- Right Side Of Navbar -->
