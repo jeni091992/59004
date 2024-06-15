@@ -1,4 +1,4 @@
-# ProspectPath Application README
+# ProspectPath Application
 
 ## Introduction
 
