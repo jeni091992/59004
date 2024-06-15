@@ -1,8 +1,8 @@
-# Laravel Application README
+# ProspectPath Application README
 
 ## Introduction
 
-Welcome to the Laravel Application! This README file provides an overview of the application, how to set it up, and instructions for use. Laravel is a web application framework with expressive, elegant syntax, which aims to make the development process enjoyable and creative without sacrificing application functionality.
+Welcome to the ProspectPath Application! This README file provides an overview of the application, how to set it up, and instructions for use. 
 
 ## Table of Contents
 
@@ -31,8 +31,8 @@ To get started with the Laravel application, follow these steps:
 
 1. **Clone the repository:**
     ```bash
-    git clone https://github.com/your-username/your-repository.git
-    cd your-repository
+    git clone https://github.com/jeni091992/deals-app.git
+    cd deals-app
     ```
 
 2. **Install dependencies:**
@@ -124,4 +124,4 @@ This application is open-source software licensed under the [MIT license](LICENS
 
 ---
 
-Feel free to reach out to the project maintainers if you have any questions or need further assistance. Enjoy building with Laravel!
+Feel free to reach out to the project maintainers if you have any questions or need further assistance. 
