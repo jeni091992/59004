@@ -49,5 +49,10 @@ Route::post('/leads/{lead}/convert', [LeadsController::class, 'convertToDeal'])-
 
 use App\Http\Controllers\DealController;
 
-Route::resource('deals', DealController::class);
-Route::get('/deals', [DealController::class, 'index'])->name('deals.index');
+//Route::resource('deals', DealController::class);
+Route::get('/deals', [DealController::class, 'index'])->middleware(['auth'])->name('deals.index');
+Route::get('/deals/{id}/edit', [DealController::class, 'edit'])->middleware(['auth'])->name('deals.edit');
+Route::put('/deals/{id}', [DealController::class, 'update'])->middleware(['auth'])->name('deals.update');
+Route::delete('/deals/{lead}', [DealController::class, 'destroy'])->middleware(['auth'])->name('deals.destroy');
+
+

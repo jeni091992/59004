@@ -9,11 +9,7 @@
             <h1 class="display-4">Deals</h1>
         </div>
     </div>
-    <div class="row mb-4">
-        <div class="col-12">
-            <a href="{{ route('deals.create') }}" class="btn btn-primary">Add Deal</a>
-        </div>
-    </div>
+    
     <div class="row">
         <div class="col-12">
             <div class="table-responsive">
