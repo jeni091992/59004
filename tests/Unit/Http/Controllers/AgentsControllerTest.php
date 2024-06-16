@@ -23,10 +23,10 @@ class AgentsControllerTest extends TestCase
         // Assert
         $response->assertStatus(302);
 
-        //$response->assertViewHas('agents.index');
-        /*$response->assertViewHas('agents', function ($viewAgents) use ($agents) {
+        $response->assertViewHas('agents.index');
+        $response->assertViewHas('agents', function ($viewAgents) use ($agents) {
             return $viewAgents->count() === $agents->count();
-        });*/
+        });
     }
 
     public function testStoreCreatesAgent()
