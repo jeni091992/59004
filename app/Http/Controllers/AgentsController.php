@@ -9,19 +9,6 @@ use Illuminate\Support\Facades\Hash;
 class AgentsController extends Controller
 {
 
-/*
-
-<option value="New" {{ $lead->stage == 'New' ? 'selected' : '' }}>New</option>
-                                <option value="Contacted" {{ $lead->stage == 'Contacted' ? 'selected' : '' }}>Contacted</option>
-                                <option value="Qualified" {{ $lead->stage == 'Qualified' ? 'selected' : '' }}>Qualified</option>
-                                <option value="Proposal Sent" {{ $lead->stage == 'Proposal Sent' ? 'selected' : '' }}>Proposal Sent</option>
-                                <option value="Negotiation" {{ $lead->stage == 'Negotiation' ? 'selected' : '' }}>Negotiation</option>
-                                <option value="Closed-Won" {{ $lead->stage == 'Closed-Won' ? 'selected' : '' }}>Closed-Won</option>
-                                <option value="Closed-Lost" {{ $lead->stage == 'Closed-Lost' ? 'selected' : '' }}>Closed-Lost</option>
-                            </select>
-
-*/
-
     public function index()
     {
         $agents = User::where('role', 'agent')
