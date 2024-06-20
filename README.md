@@ -31,8 +31,8 @@ To get started with the Laravel application, follow these steps:
 
 1. **Clone the repository:**
     ```bash
-    git clone https://github.com/jeni091992/deals-app.git
-    cd deals-app
+    git clone https://github.com/jeni091992/deals-app_59004.git
+    cd deals-app_59004
     ```
 
 2. **Install dependencies:**
