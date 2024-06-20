@@ -65,7 +65,7 @@ class DealController extends Controller
             'email' => 'required|email|max:255',
             'phone' => 'required|string|max:20',
             'message' => 'nullable|string',
-            'agent_id' => 'required|exists:agents,id',
+            'agent_id' => 'required|exists:users,id',
             'deal_value' => 'required|numeric',
         ]);
 

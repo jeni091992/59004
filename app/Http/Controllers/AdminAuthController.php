@@ -33,6 +33,6 @@ class AdminAuthController extends Controller
         ]);
 
         // Redirect to login page or admin dashboard
-        return redirect()->route('admin.login')->with('success', 'Admin created successfully. Please login.');
+        return redirect()->route('login')->with('success', 'Admin created successfully. Please login.');
     }
 }

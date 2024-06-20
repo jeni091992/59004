@@ -45,7 +45,7 @@ Route::post('/leads', [LeadsController::class, 'store'])->middleware(['auth'])->
 Route::get('/leads/{lead}/edit', [LeadsController::class, 'edit'])->middleware(['auth'])->name('leads.edit');
 Route::put('/leads/{lead}', [LeadsController::class, 'update'])->middleware(['auth'])->name('leads.update');
 Route::delete('/leads/{lead}', [LeadsController::class, 'destroy'])->middleware(['auth'])->name('leads.destroy');
-Route::post('/leads/{lead}/convert', [LeadsController::class, 'convertToDeal'])->name('leads.convert');
+
 
 use App\Http\Controllers\DealController;
 
@@ -54,5 +54,6 @@ Route::get('/deals', [DealController::class, 'index'])->middleware(['auth'])->na
 Route::get('/deals/{id}/edit', [DealController::class, 'edit'])->middleware(['auth'])->name('deals.edit');
 Route::put('/deals/{id}', [DealController::class, 'update'])->middleware(['auth'])->name('deals.update');
 Route::delete('/deals/{lead}', [DealController::class, 'destroy'])->middleware(['auth'])->name('deals.destroy');
+Route::post('/deals', [DealController::class, 'store'])->name('deals.store');
 
 
